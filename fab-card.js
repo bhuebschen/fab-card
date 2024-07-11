@@ -166,7 +166,7 @@ window.customCards.push({
 });
 
 console.info(
-  '%c     FAB-CARD     \n%c   Version: 1.0.0  ',
+  '%c     FAB-CARD     \n%c   Version: 1.0.1  ',
   'color: white; background: #db9834; font-weight: bold; padding: 5px 0;',
   'color: white; background: #333; font-weight: bold; padding: 5px 0;',
 );

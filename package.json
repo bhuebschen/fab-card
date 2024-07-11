@@ -1,6 +1,6 @@
 {
   "name": "@bhuebschen/fab-card",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Floating ActionButton for Home Assistant Lovelace UI",
   "main": "dist/fab-card.js",
   "scripts": {
