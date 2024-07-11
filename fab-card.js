@@ -78,7 +78,7 @@ class FABCard extends HTMLElement {
       </div>
     `;
 
-    this.shadowRoot.querySelector('.fab').addEventListener('click', () => {
+    this.shadowRoot.querySelector('.fab').addEventListener('click', (ev) => {
       this._handleAction(this._config.action);
     });
 
@@ -87,15 +87,41 @@ class FABCard extends HTMLElement {
     }
   }
 
+  doAction(config) {
+    if (config) {
+      switch (config.action) {
+        case 'more-info':
+          if (config.entity) {
+            const event = new Event('hass-more-info', { composed: true });
+            event.detail = { entityId: config.entity };
+            this.dispatchEvent(event);
+          }
+          break;
+        case 'navigate':
+          if (config.navigation_path) {
+            history.pushState(null, '', config.navigation_path);
+            const navEvent = new Event('location-changed', { bubbles: true, composed: true });
+            navEvent.detail = { replace: false };
+            this.dispatchEvent(navEvent);
+          }
+          break;
+        case 'call-service':
+          this._hass.callService(
+            config.service.split('.')[0],
+            config.service.split('.')[1],
+            config.service_data,
+          );
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
   _handleAction(actionConfig) {
     if (!actionConfig) return;
 
-    if (actionConfig.action === 'navigate' && actionConfig.navigation_path) {
-      window.location.href = actionConfig.navigation_path;
-    } else if (actionConfig.action === 'call-service' && actionConfig.service) {
-      const [domain, service] = actionConfig.service.split('.', 2);
-      this._hass.callService(domain, service, actionConfig.service_data);
-    }
+    this.doAction(actionConfig);
   }
 
   updateActiveClass(entityId) {
