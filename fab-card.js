@@ -112,6 +112,20 @@ class FABCard extends HTMLElement {
             config.service_data,
           );
           break;
+        case 'fire-dom-event':
+          const event = new Event('ll-custom', { composed: true, bubbles: true });
+          event.detail = config;
+          this.dispatchEvent(event);
+          break;
+        case 'url':
+          if (config.url_path) {
+            if (config.target) {
+              window.open(config.url_path, config.target);
+            } else {
+              window.location.href = config.url_path;
+            }
+          }
+          break;
         default:
           break;
       }
