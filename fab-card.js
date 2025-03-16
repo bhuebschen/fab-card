@@ -32,7 +32,15 @@ class FABCard extends HTMLElement {
   render() {
     if (!this.shadowRoot) return;
 
-    const leftButtonEnabled = this._config.left ? ' fab-left' : '';
+    const {
+      position,
+      offset_x,
+      offset_y,
+      icon_offset_x,
+      icon_offset_y,
+      animation,
+      disabled,
+    } = this._config;
 
     const primaryColor = getComputedStyle(document.documentElement)
       .getPropertyValue('--primary-color')
@@ -44,12 +52,66 @@ class FABCard extends HTMLElement {
       .getPropertyValue('--accent-color')
       .trim();
 
+    let positionStyles = '';
+    switch (position) {
+      case 'top-right':
+        positionStyles = `top: calc(1em + ${
+          offset_y || '0px'
+        }); right: calc(1em + ${offset_x || '0px'});`;
+        break;
+      case 'top-left':
+        positionStyles = `top: calc(1em + ${
+          offset_y || '0px'
+        }); left: calc(1em + ${offset_x || '0px'});`;
+        break;
+      case 'middle-right':
+        positionStyles = `top: calc(50% + ${
+          offset_y || '0px'
+        }); right: calc(1em + ${
+          offset_x || '0px'
+        }); transform: translateY(-50%);`;
+        break;
+      case 'middle-left':
+        positionStyles = `top: calc(50% + ${
+          offset_y || '0px'
+        }); left: calc(1em + ${
+          offset_x || '0px'
+        }); transform: translateY(-50%);`;
+        break;
+      case 'middle-top':
+        positionStyles = `top: calc(1em + ${
+          offset_y || '0px'
+        }); left: 50%; transform: translateX(-50%);`;
+        break;
+      case 'middle-bottom':
+        positionStyles = `bottom: calc(1em + ${
+          offset_y || '0px'
+        }); left: 50%; transform: translateX(-50%);`;
+        break;
+      case 'bottom-left':
+        positionStyles = `bottom: calc(1em + ${
+          offset_y || '0px'
+        }); left: calc(1em + ${offset_x || '0px'});`;
+        break;
+      default:
+        positionStyles = `bottom: calc(1em + ${
+          offset_y || '0px'
+        }); right: calc(1em + ${offset_x || '0px'});`;
+    }
+
+    let animationClass = '';
+    if (animation) animationClass = `animate__animated animate__${animation}`;
+
     this.shadowRoot.innerHTML = `
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
       <style>
         .fab {
           position: fixed;
-          bottom: 1em;
-          right: 1em;
+          ${positionStyles}
+
           width: 3.5em;
           height: 3.5em;
           border-radius: 50%;
@@ -61,19 +123,30 @@ class FABCard extends HTMLElement {
           cursor: pointer;
           outline: 0;
           z-index: 1024;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease-in-out;
         }
-        .fab.fab-left {
-          right: auto;
-          left: 1em;
+
+        .fab.disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          pointer-events: none;
         }
+
         .fab ha-icon {
           font-size: 1.5em;
+          transform: translate(${icon_offset_x || '0px'}, ${
+            icon_offset_y || '0px'
+          });
         }
+
         .fab.active {
           background-color: ${this._config.active_color || accentColor};
         }
       </style>
-      <div class="fab${leftButtonEnabled}">
+      <div class="fab ${animationClass} ${disabled ? 'disabled' : ''}">
         <ha-icon icon="${this._config.icon}"></ha-icon>
       </div>
     `;
@@ -100,7 +173,10 @@ class FABCard extends HTMLElement {
         case 'navigate':
           if (config.navigation_path) {
             history.pushState(null, '', config.navigation_path);
-            const navEvent = new Event('location-changed', { bubbles: true, composed: true });
+            const navEvent = new Event('location-changed', {
+              bubbles: true,
+              composed: true,
+            });
             navEvent.detail = { replace: false };
             this.dispatchEvent(navEvent);
           }
@@ -113,7 +189,10 @@ class FABCard extends HTMLElement {
           );
           break;
         case 'fire-dom-event':
-          const event = new Event('ll-custom', { composed: true, bubbles: true });
+          const event = new Event('ll-custom', {
+            composed: true,
+            bubbles: true,
+          });
           event.detail = config;
           this.dispatchEvent(event);
           break;
@@ -144,6 +223,14 @@ class FABCard extends HTMLElement {
     try {
       const entityState = this._hass.states[entityId].state;
       const fabButton = this.shadowRoot.querySelector('.fab');
+      if (animation) {
+        setTimeout(() => {
+          fabButton.classList.add('animate__animated', `animate__${animation}`);
+          fabButton.style.opacity = '1';
+        }, 100);
+      } else {
+        fabButton.style.opacity = '1';
+      }
       if (this.positiveStates.includes(entityState)) {
         fabButton.classList.add('active');
       } else {
@@ -180,7 +267,7 @@ window.customCards.push({
 });
 
 console.info(
-  '%c     FAB-CARD     \n%c   Version: 1.0.1  ',
+  '%c     FAB-CARD     \n%c   Version: 1.0.3  ',
   'color: white; background: #db9834; font-weight: bold; padding: 5px 0;',
   'color: white; background: #333; font-weight: bold; padding: 5px 0;',
 );

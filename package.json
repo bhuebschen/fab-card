@@ -74,5 +74,8 @@
   "bugs": {
     "url": "https://github.com/bhuebschen/circle-menu-card/issues"
   },
-  "homepage": "https://github.com/bhuebschen/circle-menu-card#readme"
+  "homepage": "https://github.com/bhuebschen/circle-menu-card#readme",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
 }

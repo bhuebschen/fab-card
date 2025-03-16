@@ -6,7 +6,11 @@
 The FAB Card is a custom Lovelace card for Home Assistant that allows you to place a floating action-button. This card provides a visually appealing way to access common actions or navigate to different parts of your Home Assistant dashboard.
 
 ### Features:
+
 - **Customization:** Configure the icons, colors, and positions of the floating button to match your dashboard's theme.
+- **Advanced Positioning:** Supports placement in bottom-left, bottom-right, top-left, top-right, middle-left, middle-right, middle-top, and middle-bottom.
+- **Animation Support:** Uses Animate.css to add visual effects like fade, slide-in, bounce, and more.
+- **Disabled State:** Prevents interactions when disabled, visually dimmed.
 
 ### Installation:
 
@@ -34,6 +38,7 @@ The FAB Card is a custom Lovelace card for Home Assistant that allows you to pla
 1. Add fab-card to your page
 
 ### Configuration:
+
 Here's an example configuration for the FAB Card:
 
 ```yaml
@@ -55,34 +60,42 @@ entity: light.living_room
 positive_states:
   - 'on'
   - 'home'
-left: false
+position: 'bottom-left'
+disabled: false
+animation: 'bounce'
 ```
+
 ### Options:
 
 ## Options
 
-| Name             | Type     | Requirement  | Description                                                   | Default             |
-|------------------|----------|--------------|---------------------------------------------------------------|---------------------|
-| type             | string   | **Required** | `custom:fab-card`                                              |                     |
-| button_color     | string   | **Optional** | Background color of the button                                 | `--primary-color`   |
-| icon_color       | string   | **Optional** | Color of the icon                                              | `--text-primary-color` |
-| active_color     | string   | **Optional** | Background color of the button when active                     | `--accent-color`    |
-| icon             | string   | **Required** | Icon to display on the FAB button                              | `mdi:menu`          |
-| action           | object   | **Required** | Action to perform when the button is clicked                   |                     |
-| action.action    | string   | **Required** | Type of action (`navigate`, `call-service`, `more-info`, `fire-dom-event`, `url`)              |                     |
-| action.navigation_path | string | **Optional** | Path to navigate to (required if action is `navigate`)         |                     |
-| action.service   | string   | **Optional** | Service to call (required if action is `call-service`)         |                     |
-| action.service_data | object | **Optional** | Data to include with the service call (required if action is `call-service`) |                     |
-| action.url_path | string | **Optional** | URL to navigate to  (required if action is `url`) |
-| action.target | string | **Optional** | Sets the target-frame/window/tab of the URL  (optional if action is `url`) |
-| entity           | string   | **Optional** | Entity to monitor for state changes                            |                     |
-| positive_states  | list     | **Optional** | List of states considered positive                             | `['true', 'on', 'open', 'active', 'detected', 'occupied', 'unlocked', 'home', 'above_horizon', 'ready']` |
-| left             | boolean  | **Optional** | Position the button on the left side                           | `false`             |
+| Name                   | Type    | Requirement  | Description                                                                       | Default                                                                                                  |
+| ---------------------- | ------- | ------------ | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| type                   | string  | **Required** | `custom:fab-card`                                                                 |                                                                                                          |
+| button_color           | string  | **Optional** | Background color of the button                                                    | `--primary-color`                                                                                        |
+| icon_color             | string  | **Optional** | Color of the icon                                                                 | `--text-primary-color`                                                                                   |
+| active_color           | string  | **Optional** | Background color of the button when active                                        | `--accent-color`                                                                                         |
+| icon                   | string  | **Required** | Icon to display on the FAB button                                                 | `mdi:menu`                                                                                               |
+| action                 | object  | **Required** | Action to perform when the button is clicked                                      |                                                                                                          |
+| action.action          | string  | **Required** | Type of action (`navigate`, `call-service`, `more-info`, `fire-dom-event`, `url`) |                                                                                                          |
+| action.navigation_path | string  | **Optional** | Path to navigate to (required if action is `navigate`)                            |                                                                                                          |
+| action.service         | string  | **Optional** | Service to call (required if action is `call-service`)                            |                                                                                                          |
+| action.service_data    | object  | **Optional** | Data to include with the service call (required if action is `call-service`)      |                                                                                                          |
+| action.url_path        | string  | **Optional** | URL to navigate to (required if action is `url`)                                  |
+| action.target          | string  | **Optional** | Sets the target-frame/window/tab of the URL (optional if action is `url`)         |
+| entity                 | string  | **Optional** | Entity to monitor for state changes                                               |                                                                                                          |
+| positive_states        | list    | **Optional** | List of states considered positive                                                | `['true', 'on', 'open', 'active', 'detected', 'occupied', 'unlocked', 'home', 'above_horizon', 'ready']` |
+| position               | string  | **Optional** | Sets the button position (bottom-left, bottom-right, top-left, etc.)              | `bottom-right`                                                                                           |
+| animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc.)                                     | `none`                                                                                                   |
+| disabled               | boolean | **Optional** | Disables the button (no interaction)                                              | `false`                                                                                                  |
+|  |
 
 ### Usage:
+
 After installation, you can add the fab-card to your Lovelace dashboard using the sample configuration provided above. Customize the card by setting the desired options in your YAML configuration
 
 ### Issues & Contributions:
+
 If you encounter any issues or have suggestions for improvements, feel free to [open an issue](https://github.com/bhuebschen/fab-card/issues) or submit a pull request.
 
 ## License
