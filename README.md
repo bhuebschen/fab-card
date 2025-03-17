@@ -89,6 +89,10 @@ animation: 'bounce'
 | animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc. - see: https://animate.style/        | `none`                                                                                                   |
 | disabled               | boolean | **Optional** | Disables the button (no interaction)                                              | `false`                                                                                                  |
 |  |
+| offset_x               | string  | **Optional** | Horizontal offset from the default position                                       | `0px` |
+| offset_y               | string  | **Optional** | Vertical offset from the default position                                         | `0px` |
+| icon_offset_x               | string  | **Optional** | Horizontal offset for the icon inside the button                                       | `0px` |
+| icon_offset_y               | string  | **Optional** | Vertical offset the icon inside the button                                         | `0px` |
 
 ### Usage:
 
