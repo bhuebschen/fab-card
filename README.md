@@ -86,13 +86,21 @@ animation: 'bounce'
 | entity                 | string  | **Optional** | Entity to monitor for state changes                                               |                                                                                                          |
 | positive_states        | list    | **Optional** | List of states considered positive                                                | `['true', 'on', 'open', 'active', 'detected', 'occupied', 'unlocked', 'home', 'above_horizon', 'ready']` |
 | position               | string  | **Optional** | Sets the button position (bottom-left, bottom-right, top-left, etc.)              | `bottom-right`                                                                                           |
-| animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc.)                                     | `none`                                                                                                   |
+| animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc. - see: https://animate.style/        | `none`                                                                                                   |
 | disabled               | boolean | **Optional** | Disables the button (no interaction)                                              | `false`                                                                                                  |
 |  |
+| offset_x               | string  | **Optional** | Horizontal offset from the default position                                       | `0px` |
+| offset_y               | string  | **Optional** | Vertical offset from the default position                                         | `0px` |
+| icon_offset_x               | string  | **Optional** | Horizontal offset for the icon inside the button                                       | `0px` |
+| icon_offset_y               | string  | **Optional** | Vertical offset the icon inside the button                                         | `0px` |
 
 ### Usage:
 
 After installation, you can add the fab-card to your Lovelace dashboard using the sample configuration provided above. Customize the card by setting the desired options in your YAML configuration
+
+### Animations:
+
+To enable animations, you need to add "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" to your Dashboard resources (Settings -> Dashboards, "⋮" -> Resources, "+ ADD RESOURCE" -> Stylesheet)
 
 ### Issues & Contributions:
 
