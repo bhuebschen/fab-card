@@ -159,6 +159,25 @@ class FABCard extends HTMLElement {
   doAction(config) {
     if (config) {
       switch (config.action) {
+        case 'assist':
+          let assistButton = this.deepQuerySelectorAll(
+            "ha-icon-button[data-selector='ASSIST']",
+          );
+          if (assistButton.length == 0) {
+            assistButton = this.deepQuerySelectorAll(
+              "mwc-icon-button[title='Assist']",
+            );
+          }
+          if (assistButton.length > 0) {
+            assistButton[0].click();
+            setTimeout(
+              () =>
+                this.deepQuerySelectorAll('.listening-icon')[0]
+                  .querySelectorAll('ha-icon-button')[0]
+                  .click(),
+              250,
+            );
+          }
         case 'more-info':
           if (config.entity) {
             const event = new Event('hass-more-info', { composed: true });
@@ -249,6 +268,18 @@ class FABCard extends HTMLElement {
   getCardSize() {
     return 0; // This card doesn't occupy any space
   }
+
+  deepQuerySelectorAll(selector, rootNode = document.body) {
+    const nodes = [];
+    const traverse = (node) => {
+      if (node.nodeType !== Node.ELEMENT_NODE) return;
+      if (node.matches(selector)) nodes.push(node);
+      [...node.children].forEach(traverse);
+      if (node.shadowRoot) [...node.shadowRoot.children].forEach(traverse);
+    };
+    traverse(rootNode);
+    return nodes;
+  }
 }
 
 customElements.define('fab-card', FABCard);
@@ -263,7 +294,7 @@ window.customCards.push({
 });
 
 console.info(
-  '%c     FAB-CARD     \n%c   Version: 1.0.3  ',
+  '%c     FAB-CARD     \n%c   Version: 1.0.4  ',
   'color: white; background: #db9834; font-weight: bold; padding: 5px 0;',
   'color: white; background: #333; font-weight: bold; padding: 5px 0;',
 );

@@ -69,30 +69,30 @@ animation: 'bounce'
 
 ## Options
 
-| Name                   | Type    | Requirement  | Description                                                                       | Default                                                                                                  |
-| ---------------------- | ------- | ------------ | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| type                   | string  | **Required** | `custom:fab-card`                                                                 |                                                                                                          |
-| button_color           | string  | **Optional** | Background color of the button                                                    | `--primary-color`                                                                                        |
-| icon_color             | string  | **Optional** | Color of the icon                                                                 | `--text-primary-color`                                                                                   |
-| active_color           | string  | **Optional** | Background color of the button when active                                        | `--accent-color`                                                                                         |
-| icon                   | string  | **Required** | Icon to display on the FAB button                                                 | `mdi:menu`                                                                                               |
-| action                 | object  | **Required** | Action to perform when the button is clicked                                      |                                                                                                          |
-| action.action          | string  | **Required** | Type of action (`navigate`, `call-service`, `more-info`, `fire-dom-event`, `url`) |                                                                                                          |
-| action.navigation_path | string  | **Optional** | Path to navigate to (required if action is `navigate`)                            |                                                                                                          |
-| action.service         | string  | **Optional** | Service to call (required if action is `call-service`)                            |                                                                                                          |
-| action.service_data    | object  | **Optional** | Data to include with the service call (required if action is `call-service`)      |                                                                                                          |
-| action.url_path        | string  | **Optional** | URL to navigate to (required if action is `url`)                                  |
-| action.target          | string  | **Optional** | Sets the target-frame/window/tab of the URL (optional if action is `url`)         |
-| entity                 | string  | **Optional** | Entity to monitor for state changes                                               |                                                                                                          |
-| positive_states        | list    | **Optional** | List of states considered positive                                                | `['true', 'on', 'open', 'active', 'detected', 'occupied', 'unlocked', 'home', 'above_horizon', 'ready']` |
-| position               | string  | **Optional** | Sets the button position (bottom-left, bottom-right, top-left, etc.)              | `bottom-right`                                                                                           |
-| animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc. - see: https://animate.style/        | `none`                                                                                                   |
-| disabled               | boolean | **Optional** | Disables the button (no interaction)                                              | `false`                                                                                                  |
-|  |
-| offset_x               | string  | **Optional** | Horizontal offset from the default position                                       | `0px` |
-| offset_y               | string  | **Optional** | Vertical offset from the default position                                         | `0px` |
-| icon_offset_x               | string  | **Optional** | Horizontal offset for the icon inside the button                                       | `0px` |
-| icon_offset_y               | string  | **Optional** | Vertical offset the icon inside the button                                         | `0px` |
+| Name                   | Type    | Requirement  | Description                                                                                 | Default                                                                                                  |
+| ---------------------- | ------- | ------------ | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| type                   | string  | **Required** | `custom:fab-card`                                                                           |                                                                                                          |
+| button_color           | string  | **Optional** | Background color of the button                                                              | `--primary-color`                                                                                        |
+| icon_color             | string  | **Optional** | Color of the icon                                                                           | `--text-primary-color`                                                                                   |
+| active_color           | string  | **Optional** | Background color of the button when active                                                  | `--accent-color`                                                                                         |
+| icon                   | string  | **Required** | Icon to display on the FAB button                                                           | `mdi:menu`                                                                                               |
+| action                 | object  | **Required** | Action to perform when the button is clicked                                                |                                                                                                          |
+| action.action          | string  | **Required** | Type of action (`navigate`, `call-service`, `more-info`, `fire-dom-event`, `assist`, `url`) |                                                                                                          |
+| action.navigation_path | string  | **Optional** | Path to navigate to (required if action is `navigate`)                                      |                                                                                                          |
+| action.service         | string  | **Optional** | Service to call (required if action is `call-service`)                                      |                                                                                                          |
+| action.service_data    | object  | **Optional** | Data to include with the service call (required if action is `call-service`)                |                                                                                                          |
+| action.url_path        | string  | **Optional** | URL to navigate to (required if action is `url`)                                            |
+| action.target          | string  | **Optional** | Sets the target-frame/window/tab of the URL (optional if action is `url`)                   |
+| entity                 | string  | **Optional** | Entity to monitor for state changes                                                         |                                                                                                          |
+| positive_states        | list    | **Optional** | List of states considered positive                                                          | `['true', 'on', 'open', 'active', 'detected', 'occupied', 'unlocked', 'home', 'above_horizon', 'ready']` |
+| position               | string  | **Optional** | Sets the button position (bottom-left, bottom-right, top-left, etc.)                        | `bottom-right`                                                                                           |
+| animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc. - see: https://animate.style/                  | `none`                                                                                                   |
+| disabled               | boolean | **Optional** | Disables the button (no interaction)                                                        | `false`                                                                                                  |
+|                        |
+| offset_x               | string  | **Optional** | Horizontal offset from the default position                                                 | `0px`                                                                                                    |
+| offset_y               | string  | **Optional** | Vertical offset from the default position                                                   | `0px`                                                                                                    |
+| icon_offset_x          | string  | **Optional** | Horizontal offset for the icon inside the button                                            | `0px`                                                                                                    |
+| icon_offset_y          | string  | **Optional** | Vertical offset the icon inside the button                                                  | `0px`                                                                                                    |
 
 ### Usage:
 

@@ -1,3 +1,7 @@
+### 1.0.4 (2025-03-15)
+
+open assist (and start voice-recording)
+
 ### 1.0.3 (2025-03-15)
 
 animations on show
