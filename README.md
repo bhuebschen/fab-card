@@ -86,7 +86,7 @@ animation: 'bounce'
 | entity                 | string  | **Optional** | Entity to monitor for state changes                                               |                                                                                                          |
 | positive_states        | list    | **Optional** | List of states considered positive                                                | `['true', 'on', 'open', 'active', 'detected', 'occupied', 'unlocked', 'home', 'above_horizon', 'ready']` |
 | position               | string  | **Optional** | Sets the button position (bottom-left, bottom-right, top-left, etc.)              | `bottom-right`                                                                                           |
-| animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc.)                                     | `none`                                                                                                   |
+| animation              | string  | **Optional** | Animation type (fade, slide-in, bounce, etc. - see: https://animate.style/ )                                     | `none`                                                                                                   |
 | disabled               | boolean | **Optional** | Disables the button (no interaction)                                              | `false`                                                                                                  |
 |  |
 
