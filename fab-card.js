@@ -103,10 +103,6 @@ class FABCard extends HTMLElement {
     if (animation) animationClass = `animate__animated animate__${animation}`;
 
     this.shadowRoot.innerHTML = `
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-      />
       <style>
         .fab {
           position: fixed;
