@@ -94,6 +94,10 @@ animation: 'bounce'
 
 After installation, you can add the fab-card to your Lovelace dashboard using the sample configuration provided above. Customize the card by setting the desired options in your YAML configuration
 
+### Animations:
+
+To enable animations, you need to add "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" to your Dashboard resources (Settings -> Dashboards, "⋮" -> Resources, "+ ADD RESOURCE" -> Stylesheet)
+
 ### Issues & Contributions:
 
 If you encounter any issues or have suggestions for improvements, feel free to [open an issue](https://github.com/bhuebschen/fab-card/issues) or submit a pull request.
