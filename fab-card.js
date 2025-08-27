@@ -238,9 +238,9 @@ class FABCard extends HTMLElement {
     try {
       const entityState = this._hass.states[entityId].state;
       const fabButton = this.shadowRoot.querySelector('.fab');
-      if (animation) {
+      if (this._config.animation) {
         setTimeout(() => {
-          fabButton.classList.add('animate__animated', `animate__${animation}`);
+          fabButton.classList.add('animate__animated', `animate__${this._config.animation}`);
           fabButton.style.opacity = '1';
         }, 100);
       } else {
